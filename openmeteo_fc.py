@@ -159,8 +159,8 @@ def obtener_pronostico_meteorologico(Coordenadas):
         cell.set_linewidth(0.2)
 
     # Título común para los heatbars
-    title = f"Pronóstico Meteorológico - Latitud: {params['latitude']}, Longitud: {params['longitude']}\n"
-    title += f" Período: {start_time} to {end_time} (UTC{timezone_abbr}) - Modelo GFS"
+    title = f"Pronóstico Meteorológico Modelo GFS / Latitud: {params['latitude']}, Longitud: {params['longitude']}\n"
+    title += f" Período: {start_time} to {end_time} (UTC{timezone_abbr}) - {Horas} horas"
 
     file_name = re.sub(":|-", "", f"forecast_{params['latitude']}_{params['longitude']}_{start_time_file}_{end_time_file}").replace('.','x')
     file_name +=".xlsx"
