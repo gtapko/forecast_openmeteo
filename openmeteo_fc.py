@@ -13,7 +13,7 @@ from urllib.parse import urlparse, parse_qs
 
 import re
 
-def obtener_pronostico_meteorologico(self, Coordenadas, Horas):
+def obtener_pronostico_meteorologico(Coordenadas):
     if Coordenadas.startswith("http"):
         # Extraer latitud y longitud de la URL
         parsed_url = urlparse(Coordenadas)
