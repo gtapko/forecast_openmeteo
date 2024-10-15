@@ -13,7 +13,7 @@ from urllib.parse import urlparse, parse_qs
 
 import re
 
-def obtener_pronostico_meteorologico(Coordenadas):
+def obtener_pronostico_meteorologico(Coordenadas, Horas):
     if Coordenadas.startswith("http"):
         # Extraer latitud y longitud de la URL
         parsed_url = urlparse(Coordenadas)
@@ -45,7 +45,7 @@ def obtener_pronostico_meteorologico(Coordenadas):
 
     current_hour = datetime.datetime.now(SantiagoTZ).hour
 
-    df = df.iloc[current_hour:current_hour + 48]
+    df = df.iloc[current_hour:current_hour + Horas]
 
     def calculate_values(row):
       x1 = round(0.297374 + (0.262 * row['relativehumidity_2m']) - (0.00982 * row['temperature_2m']), 2)
