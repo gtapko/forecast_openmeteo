@@ -14,32 +14,16 @@ from urllib.parse import urlparse, parse_qs
 import re
 
 def obtener_pronostico_meteorologico(Coordenadas):
-    # Validar si es una URL o coordenadas en formato 'lat, lon'
     if Coordenadas.startswith("http"):
-        # Verificar si la URL contiene parámetros lat y lon
+        # Extraer latitud y longitud de la URL
         parsed_url = urlparse(Coordenadas)
         query_params = parse_qs(parsed_url.query)
-        
-        if 'lat' not in query_params or 'lon' not in query_params:
-            print("Por favor ingrese una URL SIDCO válida con parámetros lat y lon.")
-            return
-        
-        # Extraer latitud y longitud de la URL
         lat = query_params['lat'][0]
         lon = query_params['lon'][0]
-        
     else:
-        # Verificar si el formato es 'lat, lon'
-        if not re.match(r"^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$", Coordenadas):
-            print("Por favor ingrese coordenadas válidas en el formato 'lat, lon'.")
-            return
-        
         # Asumir que el formato es "lat,lon" y separarlo
         lat = Coordenadas.split(',')[0].strip()
         lon = Coordenadas.split(',')[1].strip()
-    
-    # A partir de aquí sigue el resto de tu código
-    print(f"Latitud: {lat}, Longitud: {lon}")
 
     url = 'https://api.open-meteo.com/v1/forecast'
     params = {
